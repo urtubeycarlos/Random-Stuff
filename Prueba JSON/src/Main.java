@@ -12,7 +12,7 @@ public class Main {
 		listaCoordenadasJSON.addCoord(coord2);
 		listaCoordenadasJSON.addCoord(coord3);
 
-		listaCoordenadasJSON.generarJSON("Coordenadas.JSON");
+		listaCoordenadasJSON.generarJSON("src/Coordenadas.JSON");
 		
 	}
 	

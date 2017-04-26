@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class CoordenadaJSON {
+public class CoordenadasJSON {
 
 	ArrayList<Coordenada> _coordenadas;
 	
-	public CoordenadaJSON(){
+	public CoordenadasJSON(){
 		_coordenadas = new ArrayList<Coordenada>();
 	}
 	

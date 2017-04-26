@@ -1,0 +1,19 @@
+{
+  "_coordenadas": [
+    {
+      "_nombre": "Casa",
+      "_latitud": -34.2134,
+      "_longitud": -54.325
+    },
+    {
+      "_nombre": "Trabajo",
+      "_latitud": -33.1234,
+      "_longitud": -53.432
+    },
+    {
+      "_nombre": "Universidad",
+      "_latitud": -31.2454,
+      "_longitud": -52.665
+    }
+  ]
+}

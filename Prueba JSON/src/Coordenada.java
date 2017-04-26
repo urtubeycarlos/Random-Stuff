@@ -23,4 +23,9 @@ public class Coordenada {
 		return _longitud;
 	}
 	
+	@Override
+	public String toString(){
+		return "Coord: { Nombre: " + _nombre +"; Latitud: " + _latitud + "; Longitud: " + _longitud + " }";
+	}
+	
 }

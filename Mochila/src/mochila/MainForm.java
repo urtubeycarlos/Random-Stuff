@@ -77,4 +77,10 @@ public class MainForm {
 		progressBar.setValue((int) progreso);
 		progressBar.setStringPainted(true);
 	}
+
+	public void pausarProceso() {
+		progressBar.setIndeterminate(false);
+		// TODO Auto-generated method stub
+		
+	}
 }

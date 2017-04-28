@@ -28,3 +28,4 @@ public class Objeto
 		return _beneficio;
 	}
 }
+

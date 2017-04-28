@@ -61,3 +61,4 @@ public class InstanciaTest
 		assertEquals(primero, instancia.getObjeto(0));
 	}
 }
+

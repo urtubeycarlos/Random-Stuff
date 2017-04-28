@@ -64,3 +64,4 @@ public class SolverTest
 		assertEquals(1, solucion.getObjetos().size());
 	}
 }
+

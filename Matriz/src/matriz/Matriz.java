@@ -75,13 +75,4 @@ public class Matriz<E> {
 		return sb.toString();
 	}
 	
-	public static void main(String[] args){
-		Matriz<Integer> m = new Matriz<Integer>(5, 5);
-		m.set(18792, 3, 2);
-		System.out.println(m);
-		System.out.println(m.get(3, 2));
-		m.redimensionar(7, 7);
-		System.out.println(m);
-	}
-	
 }

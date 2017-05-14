@@ -6,7 +6,7 @@ public abstract class Comparador implements Comparator<Objeto> {
 
 		@Override
 		public int compare(Objeto arg0, Objeto arg1){
-			return (int) ( arg0.getID() - arg1.getID() );
+			return arg0.getID() - arg1.getID();
 		}
 		
 	};

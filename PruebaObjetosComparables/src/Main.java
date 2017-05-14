@@ -41,7 +41,6 @@ public class Main {
 		Collections.sort(lista, comparador_personalizado);
 		System.out.println(lista);
 		
-		
 	}
 
 }

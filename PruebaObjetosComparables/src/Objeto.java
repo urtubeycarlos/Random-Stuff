@@ -11,7 +11,7 @@ public class Objeto {
 		_beneficio = ancho;
 	}
 
-	public double getID() {
+	public int getID() {
 		return _id;
 	}
 

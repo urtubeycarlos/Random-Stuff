@@ -27,7 +27,6 @@ public class GrafoUnidireccionalTest {
 		assertEquals(3, _grafo.getVertices().size() );
 	}
 
-	
 	@Test
 	public void agregarAristaTest(){
 		assertTrue( _grafo.existeArista("Sebas", "Juan") );

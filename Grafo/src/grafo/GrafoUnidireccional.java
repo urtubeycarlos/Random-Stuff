@@ -58,7 +58,7 @@ public class GrafoUnidireccional<E> implements Grafo<E> {
 	
 	protected void checkearVertice(E e, String accion){
 		if( !_vecinos.containsKey(e) )
-			throw new IllegalArgumentException("Se intentó " + accion + " de un vértice inexistente! e = " + e.toString() );
+			throw new IllegalArgumentException("Se intentó " + accion + " con un vértice inexistente! e = " + e.toString() );
 	}
 	
 	protected void checkearArista(E e1, E e2, String accion){

@@ -40,10 +40,9 @@ public class GrafoPesadoUnidireccional<E> extends GrafoUnidireccional<E> {
 		E nodo_actual;
 		
 		MatrizRelacional<E, Double> distancias_tentativas = new MatrizRelacional<E, Double>();
-		distancias_tentativas.set(origen, origen, 0.0);
-		for( E vertice:super.getVertices() ){
+		for( E vertice:super.getVertices() )
 			distancias_tentativas.set(origen, vertice, Double.POSITIVE_INFINITY);
-		}
+		distancias_tentativas.set(origen, origen, 0.0);
 		
 		List<E> ret = new ArrayList<E>();
 		Set<E> visitados = new HashSet<E>();

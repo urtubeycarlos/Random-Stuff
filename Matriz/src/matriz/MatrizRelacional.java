@@ -1,6 +1,8 @@
 package matriz;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MatrizRelacional<K, V> implements Matriz<K, V>{
 
@@ -37,6 +39,13 @@ public class MatrizRelacional<K, V> implements Matriz<K, V>{
 			if( _m.get(row).get(key).equals(e) )
 				return key;
 		return null;
+	}
+	
+	public Set<V> values(){
+		Set<V> ret = new HashSet<V>();
+		for(K key:_m.keySet())
+			ret.addAll( _m.get(key).values() );
+		return ret;
 	}
 	
 	private void checkKeys(K key1, K key2){

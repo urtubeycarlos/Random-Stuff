@@ -44,32 +44,41 @@ public class GrafoPesadoUnidireccional<E> extends GrafoUnidireccional<E> {
 		
 		E nodo_actual;
 
-		HashMap<E, Double> distancias_tentativas = new HashMap<E, Double>();
+		HashMap<E, Double> distancias = new HashMap<E, Double>();
 		for( E vertice:super.getVertices() )
-			distancias_tentativas.put(vertice, Double.POSITIVE_INFINITY);
-		distancias_tentativas.put(origen, 0.0);
+			distancias.put(vertice, Double.POSITIVE_INFINITY);
+		distancias.put(origen, 0.0);
 		
-		List<E> ret = new ArrayList<E>();
+		List<E> camino_actual = new ArrayList<E>();
 		Set<E> visitados = new HashSet<E>();
 		
-		while( !visitados.contains(destino) && !visitados.containsAll( super.getVertices() ) ){
+		while( !visitados.contains(destino) ){
 			
-			nodo_actual = obtenerMenor(distancias_tentativas, visitados);
+			nodo_actual = obtenerMenor(distancias, visitados);
 			visitados.add(nodo_actual);
-			ret.add(nodo_actual);
-			
+			camino_actual.add(nodo_actual);
+
 			for( E nodo_j:super.getVecinos(nodo_actual) ) if( !visitados.contains(nodo_j) ){
-			
-				Double calc_distancia = distancias_tentativas.get(nodo_actual) + getPeso(nodo_actual, nodo_j);
-				if ( calc_distancia < distancias_tentativas.get(nodo_j) )
-					distancias_tentativas.put(nodo_j, calc_distancia);
+				Double calc_distancia = distancias.get(nodo_actual) + getPeso(nodo_actual, nodo_j);
+				if ( calc_distancia < distancias.get(nodo_j) ){
+					distancias.put(nodo_j, calc_distancia);
+				}
+				
 			}
 			
 		}
 
-		if( !ret.contains(destino) )
+		if( !camino_actual.contains(destino) )
 			return null;
-		return ret;
+		
+		for( int i=1; i<camino_actual.size()-1; i++ ){
+			E anterior = camino_actual.get(i-1);
+			E siguiente = camino_actual.get(i+1);
+			if ( super.getVecinos(anterior).contains(siguiente) )
+				camino_actual.remove(i);
+		}
+		
+		return camino_actual;
 	}
 	
 	private E obtenerMenor(HashMap<E, Double> dist_tentativas, Set<E> visitados){

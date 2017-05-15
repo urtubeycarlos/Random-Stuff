@@ -46,4 +46,17 @@ public class MatrizRelacional<K, V> implements Matriz<K, V>{
 			throw new IllegalArgumentException("Se intento acceder a un valor con una key invalida. key2 = " + key2);
 	}
 	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		for( K key1:_m.keySet() ){
+			sb.append(key1.toString() + ": { ");
+			for( K key2:_m.get(key1).keySet() ){
+				sb.append(key2).append(": ").append( _m.get(key1).get(key2).toString()).append("; ");
+			}	sb.append("}\n");
+		}
+		
+		return sb.toString();
+	}
+	
 }

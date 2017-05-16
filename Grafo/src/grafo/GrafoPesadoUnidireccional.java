@@ -63,9 +63,7 @@ public class GrafoPesadoUnidireccional<E> extends GrafoUnidireccional<E> {
 				if ( calc_distancia < distancias.get(nodo_j) ){
 					distancias.put(nodo_j, calc_distancia);
 				}
-				
 			}
-			
 		}
 
 		if( !camino_actual.contains(destino) )

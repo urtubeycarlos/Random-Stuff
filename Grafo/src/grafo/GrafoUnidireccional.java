@@ -76,8 +76,14 @@ public class GrafoUnidireccional<E> implements Grafo<E> {
 		if ( e1.equals(e2) )
 			throw new IllegalArgumentException("Se intentó " + accion + " una arista con dos vértices iguales!");
 	}
-
 	
-
+	@Override
+	public String toString(){
+		String ret = new String("Grafo: {");
+		for( E vertice:getVertices() ){
+			ret += vertice.toString() + ": ";
+			ret += getVecinos(vertice).toString() + "; ";
+		} return ret = ret.substring(0, ret.length()-2) + "}";
+	}
 	
 }

@@ -124,13 +124,4 @@ public class GrafoPesadoUnidireccional<E> extends GrafoUnidireccional<E> {
 		} return ret;
 	}
 	
-	@Override
-	public String toString(){
-		String ret = new String("Grafo: {");
-		for( E vertice:getVertices() ){
-			ret += vertice.toString() + ": ";
-			ret += getVecinos(vertice).toString() + "; ";
-		} return ret = ret.substring(0, ret.length()-2) + "}";
-	}
-	
 }

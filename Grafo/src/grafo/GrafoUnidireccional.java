@@ -21,6 +21,11 @@ public class GrafoUnidireccional<E> implements Grafo<E> {
 	public Set<E> getVertices() {
 		return _vecinos.keySet();
 	}
+	
+	@Override
+	public int cantVertices() {
+		return getVertices().size();
+	}
 
 	@Override
 	public boolean agregarArista(E e1, E e2) {
@@ -71,5 +76,8 @@ public class GrafoUnidireccional<E> implements Grafo<E> {
 		if ( e1.equals(e2) )
 			throw new IllegalArgumentException("Se intentó " + accion + " una arista con dos vértices iguales!");
 	}
+
+	
+
 	
 }

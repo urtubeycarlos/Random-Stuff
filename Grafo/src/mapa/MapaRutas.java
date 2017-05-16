@@ -78,22 +78,38 @@ public class MapaRutas implements Mapa {
 	@Override
 	public List<Coordenada> obtenerRutaOptima(Coordenada origen, Coordenada destino, int cantPeajesMax) {
 
+		//Bloque del bien
+		
 		List<Coordenada> ret = new ArrayList<Coordenada>();
 		ArrayList<Coordenada> referenciasCoordenadas = new ArrayList<Coordenada>();
 		GrafoPesadoUnidireccional<Integer> grafoEnCapas = new GrafoPesadoUnidireccional<>();
 		
-		for( int i=0; i<cantPeajesMax; i++ )
+		for( int i=0; i<=cantPeajesMax; i++ )
 			referenciasCoordenadas.addAll( _listaCoordenadas );
 
 		for( Integer vertice=0; vertice<referenciasCoordenadas.size(); vertice++ )
 			grafoEnCapas.agregarVertice(vertice);
 		
-		//Falta resetear las aristas
+		
+		for( int i=0; i<cantPeajesMax; i++ ){
+			for( int vertice:_grafoCiudades.getVertices() )
+			for( int vecino:_grafoCiudades.getVecinos(vertice) )
+				grafoEnCapas.agregarArista(vertice + i*_grafoCiudades.cantVertices(), vecino + i*_grafoCiudades.cantVertices());
+		}
+		
+		for( int i=0; i<cantPeajesMax; i++ ){
+			for( int vertice:grafoEnCapas.getVertices() )
+			for( int vecino:grafoEnCapas.getVecinos(vertice) )
+				if( _matrizPeajes.get(vertice - i*_grafoCiudades.cantVertices(), vecino - i*_grafoCiudades.cantVertices()) ){
+					grafoEnCapas.eliminarArista(vertice - i*_grafoCiudades.cantVertices(), vecino - i*_grafoCiudades.cantVertices());
+					grafoEnCapas.agregarArista( vertice - i*_grafoCiudades.cantVertices() , vecino);
+				}
+		}
 		
 		List<Integer> res = grafoEnCapas.obtenerCaminoMinimo( referenciasCoordenadas.indexOf(origen) , referenciasCoordenadas.indexOf(destino) );
 		
 		for(Integer indice:res)
-			ret.add( _listaCoordenadas.get(indice) );
+			ret.add( referenciasCoordenadas.get(indice) );
 		return ret;
 	}
 	

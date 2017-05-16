@@ -42,6 +42,9 @@ public class GrafoPesadoUnidireccional<E> extends GrafoUnidireccional<E> {
 		super.checkearVertice(origen, "obtener un camino minimo");
 		super.checkearVertice(destino, "obtener un camino minimo");
 		
+		if( !sePuedeLlegar(origen, destino) )
+			throw new RuntimeException( "No se puede llegar a destino = " + destino );
+		
 		E nodo_actual;
 
 		HashMap<E, Double> distancias = new HashMap<E, Double>();
@@ -58,7 +61,7 @@ public class GrafoPesadoUnidireccional<E> extends GrafoUnidireccional<E> {
 			visitados.add(nodo_actual);
 			camino_actual.add(nodo_actual);
 
-			for( E nodo_j:super.getVecinos(nodo_actual) ) if( !visitados.contains(nodo_j) ){
+			for( E nodo_j:super.getVecinos(nodo_actual) ) if( !visitados.contains(nodo_j) && nodo_j != null){
 				Double calc_distancia = distancias.get(nodo_actual) + getPeso(nodo_actual, nodo_j);
 				if ( calc_distancia < distancias.get(nodo_j) ){
 					distancias.put(nodo_j, calc_distancia);
@@ -76,16 +79,36 @@ public class GrafoPesadoUnidireccional<E> extends GrafoUnidireccional<E> {
 			E actual = camino_actual.get(i);
 			
 			if( existeArista(anterior, siguiente) ){
-				double peso_ant_sig = getPeso(anterior, siguiente);
-				double peso_ant_act_sig = peso_ant_sig + getPeso(actual, siguiente);
-				
-				if( peso_ant_sig <= peso_ant_act_sig )
+				if( !existeArista(actual, siguiente) ){
 					camino_actual.remove(actual);
+				} else {
+					double peso_ant_sig = getPeso(anterior, siguiente);
+					double peso_ant_act_sig = peso_ant_sig + getPeso(actual, siguiente);
+				
+					if( peso_ant_sig <= peso_ant_act_sig )
+						camino_actual.remove(actual);
+				}
 			}
 			
 		}
 		
 		return camino_actual;
+	}
+	
+	private boolean sePuedeLlegar(E origen, E destino){
+		E nodo_actual = destino;
+		boolean cambio_nodo;
+		while( !nodo_actual.equals(origen) ){
+			cambio_nodo = false;
+			for( E vertice:getVertices() ) if( !cambio_nodo )
+				if( getVecinos(nodo_actual) != null && getVecinos(vertice).contains(nodo_actual) ){
+					nodo_actual = vertice;
+					cambio_nodo = true;
+				}
+			if( cambio_nodo )
+				continue;
+			return false;
+		} return true;
 	}
 	
 	private E obtenerMenor(HashMap<E, Double> dist_tentativas, Set<E> visitados){
@@ -98,9 +121,7 @@ public class GrafoPesadoUnidireccional<E> extends GrafoUnidireccional<E> {
 				menor_actual = entry.getValue();
 				ret = entry.getKey();
 			}
-		}
-		
-		return ret;
+		} return ret;
 	}
 	
 	//FIXME: URGENTE! Hacer que el resultado de toString() sea mas lindo.
@@ -121,10 +142,13 @@ public class GrafoPesadoUnidireccional<E> extends GrafoUnidireccional<E> {
 		g.agregarVertice(1);
 		g.agregarVertice(2);
 		g.agregarVertice(3);
+		g.agregarVertice(4);
+		g.agregarVertice(5);
 		
 		g.agregarArista(1, 2, 5.0);
 		g.agregarArista(2, 3, 5.0);
 		g.agregarArista(1, 3, 7.0);
+		g.agregarArista(4, 5, 7.0);
 
 		System.out.println(g);
 		

@@ -1,5 +1,13 @@
 package grafo;
 
+/**
+ * @author Bianchini, Posadas, Urtubey
+ * 
+ * Grafo dirigido donde al agregar una arista (X, Y) se guarda
+ * que X esta relacionado con Y e Y esta relacionado con X.
+ * 
+ * @param <E> Tipo de dato que va a representar cada nodo del grafo.
+ */
 public class GrafoBidireccional<E> extends GrafoUnidireccional<E>{
 
 	@Override

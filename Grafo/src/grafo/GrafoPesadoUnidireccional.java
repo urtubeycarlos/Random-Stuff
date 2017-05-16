@@ -103,6 +103,19 @@ public class GrafoPesadoUnidireccional<E> extends GrafoUnidireccional<E> {
 		return ret;
 	}
 	
+	//FIXME: URGENTE! Hacer que el resultado de toString() sea mas lindo.
+	@Override
+	public String toString(){
+		String ret = new String();
+		ret += ("Grafo: {");
+		for( E vertice:getVertices() ){
+			ret += vertice.toString() + ": [";
+			for( E vecino:getVecinos(vertice) )
+				ret += vecino.toString() + ", ";
+			ret += ("]; ");
+		} return ret += ("}");
+	}
+	
 	public static void main(String[] args){
 		GrafoPesadoUnidireccional<Integer> g = new GrafoPesadoUnidireccional<>();
 		g.agregarVertice(1);
@@ -113,6 +126,8 @@ public class GrafoPesadoUnidireccional<E> extends GrafoUnidireccional<E> {
 		g.agregarArista(2, 3, 5.0);
 		g.agregarArista(1, 3, 7.0);
 
+		System.out.println(g);
+		
 		System.out.println( g.obtenerCaminoMinimo(1, 3) );
 		
 	}

@@ -4,14 +4,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * @author Bianchini, Posadas, Urtubey
- * 
- * Grafo dirigido donde al agregar una arista (X, Y) se guarda
- * que X esta relacionado con Y, pero Y no esta relacionado con X.
- * 
- * @param <E> Tipo de dato que va a representar cada nodo del grafo.
- */
 public class GrafoUnidireccional<E> implements Grafo<E> {
 	
 	private HashMap<E, HashSet<E>> _vecinos;

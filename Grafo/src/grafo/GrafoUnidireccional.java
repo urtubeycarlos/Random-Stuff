@@ -79,7 +79,7 @@ public class GrafoUnidireccional<E> implements Grafo<E> {
 	
 	@Override
 	public String toString(){
-		String ret = new String("Grafo: {");
+		String ret = new String("Grafo Unidireccional: {");
 		for( E vertice:getVertices() ){
 			ret += vertice.toString() + ": ";
 			ret += getVecinos(vertice).toString() + "; ";

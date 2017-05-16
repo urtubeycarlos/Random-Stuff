@@ -137,23 +137,4 @@ public class GrafoPesadoUnidireccional<E> extends GrafoUnidireccional<E> {
 		} return ret += ("}");
 	}
 	
-	public static void main(String[] args){
-		GrafoPesadoUnidireccional<Integer> g = new GrafoPesadoUnidireccional<>();
-		g.agregarVertice(1);
-		g.agregarVertice(2);
-		g.agregarVertice(3);
-		g.agregarVertice(4);
-		g.agregarVertice(5);
-		
-		g.agregarArista(1, 2, 5.0);
-		g.agregarArista(2, 3, 5.0);
-		g.agregarArista(1, 3, 7.0);
-		g.agregarArista(4, 5, 7.0);
-
-		System.out.println(g);
-		
-		System.out.println( g.obtenerCaminoMinimo(1, 3) );
-		
-	}
-	
 }

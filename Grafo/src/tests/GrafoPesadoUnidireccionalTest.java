@@ -28,9 +28,6 @@ public class GrafoPesadoUnidireccionalTest {
 	public void distanciaMinimaUnElementoTest(){
 		g = new GrafoPesadoUnidireccional<Integer>();
 		g.agregarVertice(1);
-		
-		System.out.println( g.obtenerCaminoMinimo(1, 1) );
-		
 	}
 	
 

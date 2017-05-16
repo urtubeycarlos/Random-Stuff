@@ -63,19 +63,26 @@ public class GrafoPesadoUnidireccional<E> extends GrafoUnidireccional<E> {
 				if ( calc_distancia < distancias.get(nodo_j) ){
 					distancias.put(nodo_j, calc_distancia);
 				}
-				
 			}
-			
 		}
 
 		if( !camino_actual.contains(destino) )
 			return null;
-		
+
 		for( int i=1; i<camino_actual.size()-1; i++ ){
+			
 			E anterior = camino_actual.get(i-1);
 			E siguiente = camino_actual.get(i+1);
-			if ( super.getVecinos(anterior).contains(siguiente) )
-				camino_actual.remove(i);
+			E actual = camino_actual.get(i);
+			
+			if( existeArista(anterior, siguiente) ){
+				double peso_ant_sig = getPeso(anterior, siguiente);
+				double peso_ant_act_sig = peso_ant_sig + getPeso(actual, siguiente);
+				
+				if( peso_ant_sig <= peso_ant_act_sig )
+					camino_actual.remove(actual);
+			}
+			
 		}
 		
 		return camino_actual;
@@ -94,6 +101,35 @@ public class GrafoPesadoUnidireccional<E> extends GrafoUnidireccional<E> {
 		}
 		
 		return ret;
+	}
+	
+	//FIXME: URGENTE! Hacer que el resultado de toString() sea mas lindo.
+	@Override
+	public String toString(){
+		String ret = new String();
+		ret += ("Grafo: {");
+		for( E vertice:getVertices() ){
+			ret += vertice.toString() + ": [";
+			for( E vecino:getVecinos(vertice) )
+				ret += vecino.toString() + ", ";
+			ret += ("]; ");
+		} return ret += ("}");
+	}
+	
+	public static void main(String[] args){
+		GrafoPesadoUnidireccional<Integer> g = new GrafoPesadoUnidireccional<>();
+		g.agregarVertice(1);
+		g.agregarVertice(2);
+		g.agregarVertice(3);
+		
+		g.agregarArista(1, 2, 5.0);
+		g.agregarArista(2, 3, 5.0);
+		g.agregarArista(1, 3, 7.0);
+
+		System.out.println(g);
+		
+		System.out.println( g.obtenerCaminoMinimo(1, 3) );
+		
 	}
 	
 }

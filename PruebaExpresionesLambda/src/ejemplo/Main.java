@@ -2,6 +2,7 @@ package ejemplo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Main {
 
@@ -19,6 +20,8 @@ public class Main {
 		Persona.aplicar( lista_personas, p -> System.out.println("Nombre: " + p.nombre() + "; Apellido: " + p.apellido() + "; Edad: " + p.edad() ) );
 		System.out.println( Persona.filtrar( lista_personas , p -> p.edad() >= 18 ) );
 		
+		Persona.calcular(lista_personas, p -> p.edad() / 3.0);
+		Collections.sort(lista_personas, (p,q) -> { return p.edad() < q.edad() ? 1 : p.edad() == q.edad() ? 0 : -1;});
 	}
 
 }

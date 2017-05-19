@@ -2,6 +2,7 @@ package ejemplo;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class Persona {
@@ -47,7 +48,13 @@ public class Persona {
 				ret.add( persona );
 		
 		return ret;
-			
 	}
 	
+	public static void calcular(ArrayList<Persona> personas, Function <Persona, Double> funcion){
+		for (Persona persona: personas)
+			System.out.println(persona._nombre + " = " + funcion.apply(persona));
+	}
 }
+
+
+

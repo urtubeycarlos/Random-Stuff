@@ -22,6 +22,8 @@ public class Main {
 		
 		Persona.calcular(lista_personas, p -> p.edad() / 3.0);
 		Collections.sort(lista_personas, (p,q) -> { return p.edad() < q.edad() ? 1 : p.edad() == q.edad() ? 0 : -1;});
+		
+		lista_personas.forEach(p -> System.out.println(p.nombre()));
 	}
 
 }

@@ -38,4 +38,10 @@ public class Instancia
 		
 		return _objetos.get(i);
 	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<Objeto> getObjetos()
+	{
+		return (ArrayList<Objeto>) _objetos.clone();
+	}
 }

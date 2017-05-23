@@ -27,5 +27,10 @@ public class Objeto
 	{
 		return _beneficio;
 	}
-}
 
+	
+	public double getCociente()
+	{
+		return _peso > 0 ? _beneficio / _peso : Double.POSITIVE_INFINITY;
+	}
+}

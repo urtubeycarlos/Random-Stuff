@@ -1,13 +1,13 @@
 package mochila;
 
-public class Solver
+public class SolverExacto
 {
 	private Instancia _instancia;
 	private Subconjunto _subconjunto;
 	private Subconjunto _incumbent;
 	private double _tiempo;
 	
-	public Solver(Instancia instancia)
+	public SolverExacto(Instancia instancia)
 	{
 		_instancia = instancia;
 	}
@@ -51,4 +51,3 @@ public class Solver
 		return _tiempo;
 	}
 }
-
